@@ -66,8 +66,8 @@ const ProfileSection = () => {
                     <Col className="col-12 col-lg-7">
                       <div className="d-flex align-items-center flex-wrap">
                         <span className="fw-semibold fs-4 lh-1 pointer bg-gray-hover py-1 rounded-1 me-2 ">
-                          {state.profile.name} {state.profile.surname} (
-                          {state.profile.username})
+                          {state.profile.name} {state.profile.surname} 
+                          
                         </span>
                         <Button className="py-0 mt-2 bg-transparent btn-add-language fs-7">
                           <i className="bi bi-shield-check me-1"></i>Verifica
@@ -99,19 +99,7 @@ const ProfileSection = () => {
                       </p>
                     </Col>
                     <Col className="col-4 p-0 d-none d-lg-block">
-                      <img
-                        src="https://ibb.co/8PcD3SH"
-                        alt="logo"
-                        width="12%"
-                        className="me-2 pointer"
-                      />
-                      <a
-                        href="#"
-                        className="fs-7 text-black nav-profile-premium fw-semibold link-underline link-underline-opacity-0 link-underline-opacity-100-hover"
-                        id="università"
-                      >
-                        EPICODE
-                      </a>
+                     
                     </Col>
                   </Row>
                   <Row className="mt-2 g-2 justify-content-start">
