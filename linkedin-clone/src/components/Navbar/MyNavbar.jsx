@@ -8,7 +8,7 @@ import {
     Dropdown,
     Button
 } from "react-bootstrap";
-import { Search, HouseDoorFill, PeopleFill, BriefcaseFill, ChatDotsFill, BellFill } from "react-bootstrap-icons";
+//import { Search, HouseDoorFill, PeopleFill, BriefcaseFill, ChatDotsFill, BellFill } from "react-bootstrap-icons";
 import TendinaTu from "./TendinaTu";
 // import {Link} from "react-router-dom"
 import { useState, useEffect, Suspense } from "react";
