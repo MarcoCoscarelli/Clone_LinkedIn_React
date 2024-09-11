@@ -3,6 +3,7 @@ import { Col, Card, Button, Dropdown } from "react-bootstrap";
 import { HiMiniInformationCircle } from "react-icons/hi2";
 import { FaFantasyFlightGames } from "react-icons/fa6";
 import { IoBagCheck } from "react-icons/io5";
+import FooterHome from "./FooterHome";
 
 const HomeRightSide = () => {
   const [userData, setUserData] = useState(null);
@@ -27,7 +28,7 @@ const HomeRightSide = () => {
   }, []);
 
   return (
-    <Col md={3} className="d-flex flex-column">
+    <Col className="d-flex flex-column" style={{marginTop:"100px"}}>
       <Card className="mb-3">
         <Card.Body>
             <div className="d-flex justify-content-between">
@@ -41,7 +42,7 @@ const HomeRightSide = () => {
             <li>Allenare il pensiero strategico <small className="text-secondary">-2,089 lettori</small> </li>
             <li>I lavori più richiesti nei prossimi 5 anni <small className="text-secondary"> -915 lettori</small></li>
             <li>Se AI sale in cattedra<small className="text-secondary">-2,500 lettori</small> </li>
-            <li>Arriva il Voucher 3I per l'innovazione <small className="text-secondary"> -905 lettori</small></li>
+            <li>Arriva il Voucher 3I per l&apos;innovazione <small className="text-secondary"> -905 lettori</small></li>
             {showMore && (
               <>
                 <li>Che si dice della Nutella vegana <small className="text-secondary">-445 lettori</small></li>
@@ -120,6 +121,7 @@ const HomeRightSide = () => {
           </div>
         </Card.Body>
       </Card>
+      <FooterHome />
     </Col>
   );
 };

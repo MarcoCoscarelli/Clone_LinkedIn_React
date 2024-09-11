@@ -1,0 +1,32 @@
+
+  
+  .footixHome .text-muted {
+    color: #6c757d;
+  }
+  
+  .footixHome .text-muted:hover {
+    color: #343a40; 
+  }
+
+  
+  .footixHome .dropdown-menu {
+    min-width: 200px; 
+  }
+  
+  .footixHome .dropdown-item {
+    font-size: 0.875rem; 
+  }
+  
+  .footixHome .list-unstyled li {
+    margin-bottom: 0.5rem; 
+  }
+  
+  .footixHome img {
+    vertical-align: middle;
+  }
+  
+  .footixHome p {
+    font-size: 0.875rem; 
+  }
+  
+ 

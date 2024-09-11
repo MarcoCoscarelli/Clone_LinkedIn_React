@@ -275,3 +275,7 @@
     border-radius: 50%;
     object-fit: cover;
   }
+
+  .ptl-1{
+    line-height: 0.8;
+  }
