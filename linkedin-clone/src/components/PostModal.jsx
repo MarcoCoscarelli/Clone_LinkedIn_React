@@ -23,7 +23,7 @@ const PostModal = ({ show, hide }) => {
     fetch("https://striveschool-api.herokuapp.com/api/posts/", {
       method: "POST",
       headers: {
-        Authorization: API_KEY,
+        Authorization: `Bearer ${API_KEY}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ text }),

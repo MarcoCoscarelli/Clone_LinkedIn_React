@@ -1,20 +1,24 @@
-import { useRef } from 'react'
-import { Button, Modal } from 'react-bootstrap'
+import { useRef } from 'react';
+import { Button, Modal } from 'react-bootstrap';
 
+/* eslint-disable react/prop-types */
 function ImageUploadProfile({ show, hide }) {
-  const API_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmRlY2FkODRkMGRlZjAwMTVjZWYxMDMiLCJpYXQiOjE3MjU4OTY2ODMsImV4cCI6MTcyNzEwNjI4M30.UMss5w-kKWhh82MNP_XXrl81zWY5Eu9fIi17fe-n7eY'
-  const inputRef = useRef()
+  const API_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmRlY2FkODRkMGRlZjAwMTVjZWYxMDMiLCJpYXQiOjE3MjU4OTY2ODMsImV4cCI6MTcyNzEwNjI4M30.UMss5w-kKWhh82MNP_XXrl81zWY5Eu9fIi17fe-n7eY';
+  const inputRef = useRef();
 
   const handleButtonClick = () => {
-    inputRef.current.click()
-  }
+    inputRef.current.click();
+  };
 
   const handleFileChange = () => {
-    let file = inputRef.current.files[0]
-    if (file) {
-      let formData = new FormData()
-      formData.append('profile', file)
-      let id = '66decad84d0def0015cef103'
+    let file = inputRef.current.files[0];
+
+    // Validazione file immagine
+    if (file && file.type.startsWith("image/")) {
+      let formData = new FormData();
+      formData.append('profile', file);
+
+      let id = '66decad84d0def0015cef103'; // ID aggiornato
 
       fetch(
         `https://striveschool-api.herokuapp.com/api/profile/${id}/picture`,
@@ -22,26 +26,27 @@ function ImageUploadProfile({ show, hide }) {
           method: 'POST',
           body: formData,
           headers: {
-            Authorization: API_KEY,
+            Authorization: `Bearer ${API_KEY}`,
           },
         }
       )
         .then((response) => {
-          if (response.ok) {
-            return response.json()
-          } else {
-            throw new Error('Network response was not ok')
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`); // Aggiunto controllo degli errori
           }
+          return response.json();
         })
         .then((data) => {
-          console.log(data)
-          window.location.reload()
+          console.log(data);
+          window.location.reload(); // Manteniamo il reload per ora
         })
         .catch((error) => {
-          console.error(error)
-        })
+          console.error('Error:', error);
+        });
+    } else {
+      alert("Per favore seleziona un file immagine valido.");
     }
-  }
+  };
 
   return (
     <>
@@ -79,7 +84,7 @@ function ImageUploadProfile({ show, hide }) {
         </Modal.Footer>
       </Modal>
     </>
-  )
+  );
 }
 
-export default ImageUploadProfile
+export default ImageUploadProfile;
