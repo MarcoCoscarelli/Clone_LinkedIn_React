@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Container, Form, Button, Card, Alert } from 'react-bootstrap';
 import { Linkedin } from 'react-bootstrap-icons';
 import { useDispatch, useSelector } from 'react-redux';
@@ -9,13 +9,13 @@ function LoginPage() {
   const [bearerToken, setBearerToken] = useState('');
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { loading, error, user } = useSelector((state) => state.user);
+  const { loading, error } = useSelector((state) => state.user);
 
-  useEffect(() => {
-    if (user) {
-      navigate('/profile');
-    }
-  }, [user, navigate]);
+  // useEffect(() => {
+  //   if (user) {
+  //     navigate('/profile');
+  //   }
+  // }, [user, navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -34,9 +34,7 @@ function LoginPage() {
       }
 
       const data = await response.json();
-      dispatch(loginUserSuccess(data, bearerToken)); // Passiamo anche il bearerToken
-      localStorage.setItem('userInfo', JSON.stringify(data));
-      localStorage.setItem('bearerToken', bearerToken);
+      dispatch(loginUserSuccess(data, bearerToken));
       navigate('/profile');
     } catch (error) {
       dispatch(loginUserFailure(error.message));

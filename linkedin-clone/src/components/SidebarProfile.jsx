@@ -17,7 +17,7 @@ const SidebarProfile = () => {
 
   const handleChangeLingua = (newLingua) => {
     setLingua(newLingua);
-    setShowModal(false); // Chiudi il modale dopo la selezione
+    setShowModal(false); 
   };
 
   return (

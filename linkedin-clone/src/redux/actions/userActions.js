@@ -1,33 +1,23 @@
 // Action types
-export const LOGIN_PENDING = 'user/login/pending';
-export const LOGIN_FULFILLED = 'user/login/fulfilled';
-export const LOGIN_REJECTED = 'user/login/rejected';
-export const LOGOUT = 'user/logout';
+export const LOGIN_PENDING = 'LOGIN_PENDING';
+export const LOGIN_FULFILLED = 'LOGIN_FULFILLED';
+export const LOGIN_REJECTED = 'LOGIN_REJECTED';
+export const LOGOUT = 'LOGOUT';
 
-export const loginUser = () => {
-  return {
-    type: LOGIN_PENDING
-  };
-};
+export const loginUser = () => ({
+  type: LOGIN_PENDING
+});
 
-export const loginUserSuccess = (userData, bearerToken) => {
-  return {
-    type: LOGIN_FULFILLED,
-    payload: { user: userData, bearerToken }
-  };
-};
+export const loginUserSuccess = (userData, bearerToken) => ({
+  type: LOGIN_FULFILLED,
+  payload: { user: userData, bearerToken }
+});
 
-export const loginUserFailure = (error) => {
-  return {
-    type: LOGIN_REJECTED,
-    payload: error
-  };
-};
+export const loginUserFailure = (error) => ({
+  type: LOGIN_REJECTED,
+  payload: error
+});
 
-export const logout = () => {
-  return {
-    type: LOGOUT
-  };
-};
-
-// ... altre azioni ...
+export const logout = () => ({
+  type: LOGOUT
+});
