@@ -3,8 +3,10 @@ import { Button, Modal } from 'react-bootstrap';
 
 /* eslint-disable react/prop-types */
 function ImageUploadProfile({ show, hide }) {
-  const API_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmRlY2FkODRkMGRlZjAwMTVjZWYxMDMiLCJpYXQiOjE3MjU4OTY2ODMsImV4cCI6MTcyNzEwNjI4M30.UMss5w-kKWhh82MNP_XXrl81zWY5Eu9fIi17fe-n7eY';
   const inputRef = useRef();
+
+  // Recupera la chiave API dal local storage
+  const API_KEY = localStorage.getItem('bearerToken');
 
   const handleButtonClick = () => {
     inputRef.current.click();

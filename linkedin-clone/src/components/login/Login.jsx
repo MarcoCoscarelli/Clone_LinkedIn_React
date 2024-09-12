@@ -11,12 +11,6 @@ function LoginPage() {
   const navigate = useNavigate();
   const { loading, error } = useSelector((state) => state.user);
 
-  // useEffect(() => {
-  //   if (user) {
-  //     navigate('/profile');
-  //   }
-  // }, [user, navigate]);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     dispatch(loginUser());
@@ -34,7 +28,11 @@ function LoginPage() {
       }
 
       const data = await response.json();
+      // Successo login: salva dati utente e token
       dispatch(loginUserSuccess(data, bearerToken));
+      // Salva il token nel localStorage
+      localStorage.setItem('bearerToken', bearerToken);
+      // Reindirizza alla pagina del profilo
       navigate('/profile');
     } catch (error) {
       dispatch(loginUserFailure(error.message));

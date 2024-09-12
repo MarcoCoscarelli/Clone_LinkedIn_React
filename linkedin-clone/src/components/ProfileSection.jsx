@@ -6,19 +6,24 @@ import { Link } from "react-router-dom";
 
 const ProfileSection = () => {
   const [show, setShow] = useState(false);
-
-  const state = useSelector((state) => state.profile);
   const [showPostModal, setShowPostModal] = useState(false);
+  
+  const state = useSelector((state) => state.profile);
 
   // Funzione per aprire il modale per la creazione di un post
-  const handleCreatePostClick = () => {
-    setShowPostModal(true);
-  };
+  const handleCreatePostClick = () => setShowPostModal(true);
 
   // Funzione per chiudere il modale per la creazione di un post
-  const handleClosePostModal = () => {
-    setShowPostModal(false);
-  };
+  const handleClosePostModal = () => setShowPostModal(false);
+
+  // Funzione per aprire il modale delle informazioni di contatto
+  const handleShowContactInfo = () => setShow(true);
+
+  // Funzione per chiudere il modale delle informazioni di contatto
+  const handleCloseContactInfo = () => setShow(false);
+
+  // Recupera la chiave API dal local storage se necessario
+  // const API_KEY = localStorage.getItem('apiKey'); // Usa se necessario
 
   return (
     <>
@@ -65,22 +70,19 @@ const ProfileSection = () => {
                   <Row className="justify-content-between">
                     <Col className="col-12 col-lg-7">
                       <div className="d-flex align-items-center flex-wrap">
-                        <span className="fw-semibold fs-4 lh-1 pointer bg-gray-hover py-1 rounded-1 me-2 ">
-                          {state.profile.name} {state.profile.surname} 
-                          
+                        <span className="fw-semibold fs-4 lh-1 pointer bg-gray-hover py-1 rounded-1 me-2">
+                          {state.profile.name} {state.profile.surname}
                         </span>
                         <Button className="py-0 mt-2 bg-transparent btn-add-language fs-7">
-                          <i className="bi bi-shield-check me-1"></i>Verifica
-                          ora
+                          <i className="bi bi-shield-check me-1"></i>Verifica ora
                         </Button>
                       </div>
                       <p className="mb-2 mt-2 lh-1">{state.profile.title}</p>
                       <a
                         href="#"
                         className="d-block d-lg-none fs-7 text-secondary nav-profile-premium link-underline link-underline-opacity-0 link-underline-opacity-100-hover"
-                        id="università"
                       >
-                        EPICODE
+                        
                       </a>
                       <p className="text-secondary fs-7 m-0 mt-2">
                         {state.profile.area}
@@ -90,16 +92,14 @@ const ProfileSection = () => {
                         <a
                           href="#"
                           className="fw-semibold link-underline link-underline-opacity-0 link-underline-opacity-100-hover"
-                          onClick={() => {
-                            setShow(true);
-                          }}
+                          onClick={handleShowContactInfo}
                         >
                           Informazioni di contatto
                         </a>
                       </p>
                     </Col>
                     <Col className="col-4 p-0 d-none d-lg-block">
-                     
+                      {/* Eventuali contenuti aggiuntivi */}
                     </Col>
                   </Row>
                   <Row className="mt-2 g-2 justify-content-start">
@@ -137,12 +137,10 @@ const ProfileSection = () => {
                               }}
                             ></i>
                           </span>
-
                           <p className="m-0">Ruoli di Sviluppatore front-end</p>
                           <a
                             href="#"
                             className="fs-7 fw-semibold link-underline link-underline-opacity-0 link-underline-opacity-100-hover"
-                            id="università"
                           >
                             Mostra dettagli
                           </a>
@@ -152,8 +150,8 @@ const ProfileSection = () => {
                   </div>
                 </Card.Body>
               </Card>
-              {/*Modale informazioni di contatto con dati profilo recuperati da database */}
-              <Modal show={show} onHide={() => setShow(false)} className="mt-5">
+              {/* Modale informazioni di contatto */}
+              <Modal show={show} onHide={handleCloseContactInfo} className="mt-5">
                 <Modal.Header closeButton>
                   <Modal.Title className="fs-5 px-2">
                     {state.profile.name} {state.profile.surname}
@@ -215,7 +213,7 @@ const ProfileSection = () => {
               </Modal>
             </>
           ) : (
-            <Spinner variant="primary"></Spinner>
+            <Spinner variant="primary" />
           )}
         </Col>
       </Row>

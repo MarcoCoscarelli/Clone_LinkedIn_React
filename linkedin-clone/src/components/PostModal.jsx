@@ -7,18 +7,24 @@ import { useState } from "react";
 import { addPost } from "../redux/actions/ProfileSection";
 
 const PostModal = ({ show, hide }) => {
-  const API_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmRlY2FkODRkMGRlZjAwMTVjZWYxMDMiLCJpYXQiOjE3MjU4OTY2ODMsImV4cCI6MTcyNzEwNjI4M30.UMss5w-kKWhh82MNP_XXrl81zWY5Eu9fIi17fe-n7eY'
+  // Recupera il token dal local storage
+  const API_KEY = localStorage.getItem('bearerToken');
+
   const [text, setText] = useState("");
+  /* eslint-disable react/prop-types */
   const [image, setImage] = useState(null);
   const dispatch = useDispatch();
 
   const state = useSelector((state) => state.profile);
+
   const handleImageUpload = (event) => {
     setImage(event.target.files[0]);
   };
+
   const handleChange = (event) => {
     setText(event.target.value);
   };
+
   const handleClick = () => {
     fetch("https://striveschool-api.herokuapp.com/api/posts/", {
       method: "POST",
@@ -36,6 +42,7 @@ const PostModal = ({ show, hide }) => {
       .catch((error) => {
         console.error("Error:", error);
       });
+
     setText("");
     setImage(null);
     hide();
@@ -63,22 +70,20 @@ const PostModal = ({ show, hide }) => {
                   xs={12}
                   sm={3}
                   lg={2}
-                  // xxl={1}
-                  className="d-flex justify-content-center ps-0 p-sm-1 text-sm-start pe-0  "
+                  className="d-flex justify-content-center ps-0 p-sm-1 text-sm-start pe-0"
                 >
                   <img
                     src={state.profile.image}
                     alt="profilo"
                     style={{ width: "5em" }}
-                    className=" border rounded-circle border-white "
+                    className="border rounded-circle border-white"
                   />
                 </Col>
                 <Col
                   xs={12}
                   sm={9}
                   lg={10}
-                  // xxl={11}
-                  className=" mt-3 text-sm-start mt-sm-0 ps-0 d-flex align-items-center justify-content-center justify-content-sm-start  "
+                  className="mt-3 text-sm-start mt-sm-0 ps-0 d-flex align-items-center justify-content-center justify-content-sm-start"
                 >
                   <h5>
                     {state.profile.name} {state.profile.surname}
@@ -96,10 +101,10 @@ const PostModal = ({ show, hide }) => {
               </Row>
               <Row>
                 <div>
-                  <Button className="border-0  bg-transparent mb-2 ">
+                  <Button className="border-0 bg-transparent mb-2">
                     <i
                       style={{ color: "black", fontSize: "20px" }}
-                      className="bi bi-emoji-smile "
+                      className="bi bi-emoji-smile"
                     ></i>
                   </Button>
                 </div>
@@ -144,7 +149,7 @@ const PostModal = ({ show, hide }) => {
             </Container>
           </Modal.Body>
           <Modal.Footer>
-            <i style={{ fontSize: "20px" }} className="bi bi-clock me-3 "></i>{" "}
+            <i style={{ fontSize: "20px" }} className="bi bi-clock me-3"></i>
             <Button
               variant="primary"
               onClick={handleClick}
@@ -160,3 +165,4 @@ const PostModal = ({ show, hide }) => {
 };
 
 export default PostModal;
+

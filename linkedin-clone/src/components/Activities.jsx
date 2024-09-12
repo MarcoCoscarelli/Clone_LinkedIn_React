@@ -10,20 +10,16 @@ import { Col, Row } from "react-bootstrap";
 import {
   addImageToPost,
   deleteFromFavouriteAction,
-  
-  fetchPosts, // Importa la nuova action per il fetch
+  fetchPosts,
 } from "../redux/actions/ProfileSection";
 
 const Activities = () => {
-  let API_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmRlY2FkODRkMGRlZjAwMTVjZWYxMDMiLCJpYXQiOjE3MjU4OTY2ODMsImV4cCI6MTcyNzEwNjI4M30.UMss5w-kKWhh82MNP_XXrl81zWY5Eu9fIi17fe-n7eY';
-  
-  const [showPostModal, setShowPostModal] = useState(false); // Stato per il modale post
-  const [showActivitiesModal, setShowActivitiesModal] = useState(false); // Stato per il modale attività
+  const [showPostModal, setShowPostModal] = useState(false);
+  const [showActivitiesModal, setShowActivitiesModal] = useState(false);
   const state = useSelector((state) => state.posts);
   const state1 = useSelector((state) => state.profile);
   const dispatch = useDispatch();
 
-  // Gestione apertura e chiusura modali
   const handleCreatePostClick = () => setShowPostModal(true);
   const handleClosePostModal = () => setShowPostModal(false);
   const handleActivitiesIconClick = () => setShowActivitiesModal(true);
@@ -31,24 +27,25 @@ const Activities = () => {
 
   const fileInputRefs = useRef({});
 
-  // Funzione per aprire l'input file
   const handleImageClick = (postId) => {
     if (fileInputRefs.current[postId]) {
       fileInputRefs.current[postId].click();
     }
   };
 
-  // Caricamento immagine post
   const handleFileChange = (postId) => (event) => {
     const file = event.target.files[0];
     if (file) {
       const data = new FormData();
       data.append("post", file);
+
+      const API_KEY = localStorage.getItem('bearerToken'); // Recupera la chiave API dal local storage
+
       fetch(`https://striveschool-api.herokuapp.com/api/posts/${postId}`, {
         method: "POST",
         body: data,
         headers: {
-          Authorization: `Bearer ${API_KEY}`, 
+          Authorization: `Bearer ${API_KEY}`,
         },
       })
         .then((response) => response.json())
@@ -62,28 +59,24 @@ const Activities = () => {
     }
   };
 
-  // Effettua il fetch all'inizio
   useEffect(() => {
-    dispatch(fetchPosts()); // Utilizza la nuova action Redux per recuperare i post
+    dispatch(fetchPosts());
   }, [dispatch]);
-// controllo dei dati recuperati dai post
+
   useEffect(() => {
-    console.log( "state dei post", state.posts); // Aggiungi questa riga per vedere i dati recuperati
+    console.log("state dei post", state.posts);
   }, [state.posts]);
 
-  // Eliminazione post
   const handleDeletePost = (postId) => {
-    let API_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmRlY2FkODRkMGRlZjAwMTVjZWYxMDMiLCJpYXQiOjE3MjU4OTY2ODMsImV4cCI6MTcyNzEwNjI4M30.UMss5w-kKWhh82MNP_XXrl81zWY5Eu9fIi17fe-n7eY';
-     
+    const API_KEY = localStorage.getItem('bearerToken'); // Recupera la chiave API dal local storage
+
     fetch(`https://striveschool-api.herokuapp.com/api/posts/${postId}`, {
       method: "DELETE",
       headers: {
-        Authorization: `Bearer ${API_KEY}`, 
+        Authorization: `Bearer ${API_KEY}`,
         'Content-Type': 'application/json',
       },
-      
     })
-    
       .then((response) => {
         if (response.ok) {
           dispatch(deleteFromFavouriteAction(postId));
@@ -213,5 +206,3 @@ const Activities = () => {
 };
 
 export default Activities;
-
-
