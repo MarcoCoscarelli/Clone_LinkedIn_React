@@ -13,7 +13,7 @@ import userReducer from "../reducers/userReducer";
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['user', 'bearerToken'], // Aggiungi qui le chiavi dei reducers che vuoi persistere
+  
 };
 
 // Combina i reducers

@@ -13,17 +13,17 @@ export const deletePostAction = (postId) => ({
   payload: postId,
 });
 
+
 // Action per ottenere il profilo dell'utente
 export const myProfile = () => {
   const url = "https://striveschool-api.herokuapp.com/api/profile/me";
-  const API_KEY =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmRlY2FkODRkMGRlZjAwMTVjZWYxMDMiLCJpYXQiOjE3MjU4OTY2ODMsImV4cCI6MTcyNzEwNjI4M30.UMss5w-kKWhh82MNP_XXrl81zWY5Eu9fIi17fe-n7eY";
   
-  return async (dispatch) => {
+  
+  return async (dispatch, getState) => {
     try {
       const res = await fetch(url, {
         headers: {
-          Authorization: `Bearer ${API_KEY}`, 
+          Authorization: `Bearer ${getState().user.bearerToken}`, 
         },
       });
 
@@ -42,14 +42,13 @@ export const myProfile = () => {
 // Action per ottenere i post dell'utente
 export const fetchPosts = () => {
   const url = "https://striveschool-api.herokuapp.com/api/posts/";
-  const API_KEY =
-    "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmRlY2FkODRkMGRlZjAwMTVjZWYxMDMiLCJpYXQiOjE3MjU4OTY2ODMsImV4cCI6MTcyNzEwNjI4M30.UMss5w-kKWhh82MNP_XXrl81zWY5Eu9fIi17fe-n7eY";
   
-  return async (dispatch) => {
+  
+  return async (dispatch, getState) => {
     try {
       const res = await fetch(url, {
         headers: {
-          Authorization: `Bearer ${API_KEY}`, 
+          Authorization: `Bearer ${getState().user.bearerToken}`, 
         },
       });
 

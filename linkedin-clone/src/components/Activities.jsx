@@ -19,7 +19,7 @@ const Activities = () => {
   const state = useSelector((state) => state.posts);
   const state1 = useSelector((state) => state.profile);
   const dispatch = useDispatch();
-
+  const API_KEY = useSelector((state) => state.user.bearerToken);
   const handleCreatePostClick = () => setShowPostModal(true);
   const handleClosePostModal = () => setShowPostModal(false);
   const handleActivitiesIconClick = () => setShowActivitiesModal(true);
@@ -39,7 +39,7 @@ const Activities = () => {
       const data = new FormData();
       data.append("post", file);
 
-      const API_KEY = localStorage.getItem('bearerToken'); // Recupera la chiave API dal local storage
+      
 
       fetch(`https://striveschool-api.herokuapp.com/api/posts/${postId}`, {
         method: "POST",

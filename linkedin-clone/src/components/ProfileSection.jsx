@@ -82,7 +82,7 @@ const ProfileSection = () => {
                         href="#"
                         className="d-block d-lg-none fs-7 text-secondary nav-profile-premium link-underline link-underline-opacity-0 link-underline-opacity-100-hover"
                       >
-                        
+                        EPICODE
                       </a>
                       <p className="text-secondary fs-7 m-0 mt-2">
                         {state.profile.area}
