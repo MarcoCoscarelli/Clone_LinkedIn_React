@@ -17,7 +17,7 @@ const Activities = () => {
   const [showPostModal, setShowPostModal] = useState(false); // Stato per il modale post
   const [showActivitiesModal, setShowActivitiesModal] = useState(false); // Stato per il modale attività
   const state = useSelector((state) => state.posts);
-  const state1 = useSelector((state) => state.profile);
+  const state1 = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const [posts, setPosts] = useState([]);
   
@@ -154,7 +154,7 @@ const Activities = () => {
                   >
                     <Col className="mt-4 me-5 me-sm-0 me-lg-4 me-xxl-3 col-1 col-sm-2 col-md-3 col-lg-1 ">
                       <img
-                        src={state1.profile.image}
+                        src={state1.user.image}
                         className="objectfit-cover rounded-circle"
                         width="60px"
                         height="60px"
@@ -162,7 +162,7 @@ const Activities = () => {
                     </Col>
                     <Col className="mt-4 ms-1 ms-sm-0 ms-lg-2 ms-xl-0">
                       <p className="name-activities mb-1">
-                        {state1.profile.name} {state1.profile.surname}
+                        {state1.user.name} {state1.user.surname}
                       </p>
                       <p className="text-activities">{post.text}</p>
                       {post.imageUrl && (

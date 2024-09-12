@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 const ProfileSection = () => {
   const [show, setShow] = useState(false);
 
-  const state = useSelector((state) => state.profile);
+  const state = useSelector((state) => state.user);
   const [showPostModal, setShowPostModal] = useState(false);
 
   // Funzione per aprire il modale per la creazione di un post
@@ -24,7 +24,7 @@ const ProfileSection = () => {
     <>
       <Row className="mt-5 mb-2">
         <Col>
-          {state.profile ? (
+          {state.user ? (
             <>
               <Card>
                 <Card.Header className="p-0">
@@ -32,7 +32,7 @@ const ProfileSection = () => {
                     <div className="hero"></div>
                     <div className="position-absolute z-index-1 propic-container">
                       <img
-                        src={state.profile.image}
+                        src={state.user.image}
                         alt="propic"
                         className="border border-3 rounded-circle border-white pointer w-100 h-100 objectfit-cover"
                       />
@@ -66,7 +66,7 @@ const ProfileSection = () => {
                     <Col className="col-12 col-lg-7">
                       <div className="d-flex align-items-center flex-wrap">
                         <span className="fw-semibold fs-4 lh-1 pointer bg-gray-hover py-1 rounded-1 me-2 ">
-                          {state.profile.name} {state.profile.surname} 
+                          {state.user.name} {state.user.surname} 
                           
                         </span>
                         <Button className="py-0 mt-2 bg-transparent btn-add-language fs-7">
@@ -74,16 +74,16 @@ const ProfileSection = () => {
                           ora
                         </Button>
                       </div>
-                      <p className="mb-2 mt-2 lh-1">{state.profile.title}</p>
+                      <p className="mb-2 mt-2 lh-1">{state.user.title}</p>
                       <a
                         href="#"
-                        className="d-block d-lg-none fs-7 text-secondary nav-profile-premium link-underline link-underline-opacity-0 link-underline-opacity-100-hover"
+                        className="d-block d-lg-none fs-7 text-secondary nav-user-premium link-underline link-underline-opacity-0 link-underline-opacity-100-hover"
                         id="università"
                       >
                         EPICODE
                       </a>
                       <p className="text-secondary fs-7 m-0 mt-2">
-                        {state.profile.area}
+                        {state.user.area}
                         <span>
                           <i className="bi bi-dot"></i>
                         </span>
@@ -156,7 +156,7 @@ const ProfileSection = () => {
               <Modal show={show} onHide={() => setShow(false)} className="mt-5">
                 <Modal.Header closeButton>
                   <Modal.Title className="fs-5 px-2">
-                    {state.profile.name} {state.profile.surname}
+                    {state.user.name} {state.user.surname}
                   </Modal.Title>
                 </Modal.Header>
                 <Modal.Body className="container-fluid">
@@ -179,10 +179,10 @@ const ProfileSection = () => {
                     <Col xs={11}>
                       <p className="mb-0 fw-semibold">Il tuo profilo</p>
                       <Link
-                        to={`/profile/${state.profile._id}`}
+                        to={`/user/${state.user._id}`}
                         className="fs-7 fw-semibold link-underline link-underline-opacity-0 link-underline-opacity-100-hover"
                       >
-                        /profile/{state.profile._id}
+                        /user/{state.user._id}
                       </Link>
                     </Col>
                   </Row>
@@ -196,7 +196,7 @@ const ProfileSection = () => {
                         href="#"
                         className="fs-7 fw-semibold link-underline link-underline-opacity-0 link-underline-opacity-100-hover"
                       >
-                        {state.profile.email}
+                        {state.user.email}
                       </a>
                     </Col>
                   </Row>
@@ -207,7 +207,7 @@ const ProfileSection = () => {
                     <Col xs={11}>
                       <p className="mb-0 fw-semibold">Bio</p>
                       <p className="m-0 fs-7 fw-semibold link-underline link-underline-opacity-0 link-underline-opacity-100-hover">
-                        {state.profile.bio}
+                        {state.user.bio}
                       </p>
                     </Col>
                   </Row>
