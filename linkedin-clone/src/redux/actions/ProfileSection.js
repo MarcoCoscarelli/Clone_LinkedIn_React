@@ -43,7 +43,7 @@ export const myProfile = () => {
 export const fetchPosts = () => {
   const url = "https://striveschool-api.herokuapp.com/api/posts/";
   const API_KEY =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmRlY2FkODRkMGRlZjAwMTVjZWYxMDMiLCJpYXQiOjE3MjU4OTY2ODMsImV4cCI6MTcyNzEwNjI4M30.UMss5w-kKWhh82MNP_XXrl81zWY5Eu9fIi17fe-n7eY";
+    "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmRlY2FkODRkMGRlZjAwMTVjZWYxMDMiLCJpYXQiOjE3MjU4OTY2ODMsImV4cCI6MTcyNzEwNjI4M30.UMss5w-kKWhh82MNP_XXrl81zWY5Eu9fIi17fe-n7eY";
   
   return async (dispatch) => {
     try {
@@ -64,6 +64,8 @@ export const fetchPosts = () => {
     }
   };
 };
+
+
 
 // Azioni per la gestione dei post
 export const addPost = (post) => {

@@ -74,12 +74,14 @@ const Activities = () => {
   // Eliminazione post
   const handleDeletePost = (postId) => {
     let API_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmRlY2FkODRkMGRlZjAwMTVjZWYxMDMiLCJpYXQiOjE3MjU4OTY2ODMsImV4cCI6MTcyNzEwNjI4M30.UMss5w-kKWhh82MNP_XXrl81zWY5Eu9fIi17fe-n7eY';
-     // ID del profilo utente
+     
     fetch(`https://striveschool-api.herokuapp.com/api/posts/${postId}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${API_KEY}`, 
+        'Content-Type': 'application/json',
       },
+      
     })
     
       .then((response) => {
