@@ -40,6 +40,56 @@ const initialConversations = [
     ],
     imageUrl: "https://placedog.net/600",
   },
+  {
+    id: 3,
+    name: "Diana F",
+    position: "Junior FullStack",
+    messages: [
+      { sender: "Diana F", text: "Come sta procedendo" },
+      { sender: "Tu", text: "tutto bene" },
+    ],
+    imageUrl: "https://placedog.net/350",
+  },
+  {
+    id: 4,
+    name: "Marco C",
+    position: "Junior FullStack",
+    messages: [
+      { sender: "Marco C", text: "Abbiamo visto il suo profilo e sarebbe adatto per lavorare con noi. Le potrebbe interessare?" },
+      { sender: "Tu", text: "Sì, Quali sono i dettagli?" },
+    ],
+    imageUrl: "https://placedog.net/250",
+  },
+  {
+    id: 5,
+    name: "Ines M",
+    position: "Senior FullStack",
+    messages: [
+      { sender: "Ines M", text: "Sarebbe disponibile per un colloquio?" },
+      { sender: "Tu", text: "Certo, quando sarebbe?" },
+    ],
+    imageUrl: "https://placedog.net/500",
+  },
+  {
+    id: 6,
+    name: "Maurel K",
+    position: "Senior FullStack",
+    messages: [
+      { sender: "Maurel K", text: "Dovremmo rimandare la nostra call a data da concordare" },
+      { sender: "Tu", text: "D'accordo" },
+    ],
+    imageUrl: "https://placedog.net/100",
+  },
+  {
+    id: 7,
+    name: "Mario R",
+    position: "Junior FullStack",
+    messages: [
+      { sender: "Mario C", text: "il progetto parte lunedì prossimo, le invio i dettagli" },
+      { sender: "Tu", text: "Perfetto" },
+    ],
+    imageUrl: "https://placedog.net/200",
+  },
 ];
 
 const Messaging = () => {
@@ -68,7 +118,10 @@ const Messaging = () => {
   };
 
   const filteredConversations = conversations.filter((conversation) =>
-    conversation.name.toLowerCase().includes(searchTerm.toLowerCase())
+    conversation.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    conversation.messages.some((message) =>
+      message.text.toLowerCase().includes(searchTerm.toLowerCase())
+    )
   );
 
   return (
@@ -112,7 +165,7 @@ const Messaging = () => {
             <DropdownButton
               title="Posta in arrivo"
               variant="success"
-              className=" me-3  green"
+            className="green me-2 bg-success"
             >
               <Dropdown.Item href="#/action-1">Posta in arrivo</Dropdown.Item>
               <Dropdown.Item href="#/action-2">
