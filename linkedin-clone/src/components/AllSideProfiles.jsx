@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { Card, Button, Spinner } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { fetchSingleProfile } from "../redux/actions/homePostAction";
 
 // L'URL dell'API per ottenere i profili
 const urlAPI = "https://striveschool-api.herokuapp.com/api/profile/";
@@ -8,6 +10,9 @@ const urlAPI = "https://striveschool-api.herokuapp.com/api/profile/";
 const AllSideProfiles = () => {
   const [profiles, setProfiles] = useState([]);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const path = useLocation().pathname
 
   // La fetch dei profili dall'API
   const fetchProfiles = async () => {
@@ -35,6 +40,13 @@ const AllSideProfiles = () => {
     fetchProfiles();
   }, []);
 
+  const handleProfileClick = (profileId) => {
+    dispatch(fetchSingleProfile(profileId));
+    navigate(`/profile/${profileId}`);
+    
+
+  };
+
   if (loading) {
     return (
       <div className="d-flex justify-content-center">
@@ -46,34 +58,86 @@ const AllSideProfiles = () => {
   return (
     <div className="side-profiles">
       <h5 className="mt-3 text-start">Altri profili per te</h5>
-      {profiles.slice(55, 60).map((profile) => (
-        <Card key={profile._id} className="mb-1 p-1">
-          <Card.Body className="d-flex align-items-center">
-            <img
-              src={profile.image}
-              alt={profile.name}
-              className="profile-img rounded-circle"
-              style={{ width: "50px", height: "50px", marginRight: "10px" }}
-            />
-            <div>
-              <Card.Title style={{ fontSize: "1rem" }}>
-                {profile.name} {profile.surname}
-              </Card.Title>
-              <Card.Text className="text-muted " style={{ fontSize: "0.9rem" }}>
-                {profile.title} | <br />{profile.area}
-              </Card.Text>
-            </div>
-          </Card.Body>
-          <div className="d-flex justify-content-center">
-            <Button
-              variant="outline-secondary"
-              className="m-2 rounded-5 border-2 text-black fw-5 w-75"
-            >
-              <Link to={`/dinamicProfile/${profile._id}` } className="text-decoration-none">Visualizza profilo</Link>
-            </Button>
-          </div>
-        </Card>
-      ))}
+      {path.includes('/profile/')
+        ? profiles
+            .reverse()
+            .slice(55, 60)
+            .map((profile) => (
+              <Card key={profile._id} className="mb-1 p-1">
+                <Card.Body className="d-flex align-items-center">
+                  <img
+                    src={profile.image}
+                    alt={profile.name}
+                    className="profile-img rounded-circle"
+                    style={{
+                      width: "50px",
+                      height: "50px",
+                      marginRight: "10px",
+                    }}
+                  />
+                  <div>
+                    <Card.Title style={{ fontSize: "1rem" }}>
+                      {profile.name} {profile.surname}
+                    </Card.Title>
+                    <Card.Text
+                      className="text-muted "
+                      style={{ fontSize: "0.9rem" }}
+                    >
+                      {profile.title} | <br />
+                      {profile.area}
+                    </Card.Text>
+                  </div>
+                </Card.Body>
+                <div className="d-flex justify-content-center">
+                  <Button
+                    variant="outline-secondary"
+                    className="m-2 rounded-5 border-2 text-black fw-5 w-75"
+                    onClick={() => handleProfileClick(profile._id)}
+                  >
+                    Visualizza profilo
+                  </Button>
+                </div>
+              </Card>
+            ))
+        : profiles
+            .slice(55, 60)
+            .map((profile) => (
+              <Card key={profile._id} className="mb-1 p-1">
+                <Card.Body className="d-flex align-items-center">
+                  <img
+                    src={profile.image}
+                    alt={profile.name}
+                    className="profile-img rounded-circle"
+                    style={{
+                      width: "50px",
+                      height: "50px",
+                      marginRight: "10px",
+                    }}
+                  />
+                  <div>
+                    <Card.Title style={{ fontSize: "1rem" }}>
+                      {profile.name} {profile.surname}
+                    </Card.Title>
+                    <Card.Text
+                      className="text-muted "
+                      style={{ fontSize: "0.9rem" }}
+                    >
+                      {profile.title} | <br />
+                      {profile.area}
+                    </Card.Text>
+                  </div>
+                </Card.Body>
+                <div className="d-flex justify-content-center">
+                  <Button
+                    variant="outline-secondary"
+                    className="m-2 rounded-5 border-2 text-black fw-5 w-75"
+                    onClick={() => handleProfileClick(profile._id)}
+                  >
+                    Visualizza profilo
+                  </Button>
+                </div>
+              </Card>
+            ))}
       <div className="border border-1 rounded-2">
         <Button
           variant="link"

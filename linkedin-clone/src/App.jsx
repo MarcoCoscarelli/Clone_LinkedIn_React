@@ -7,7 +7,8 @@ import Jobs from "./components/Jobs/Jobs";
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
-
+import AllSideProfiles from "./components/AllSideProfiles";
+import SingleProfile from "./components/SingleProfile";
 
 import Profile from "./components/Profile";
 import MyNavbar from "./components/Navbar/MyNavbar";
@@ -15,7 +16,6 @@ import { useState } from 'react';
 import MyFooter from "./components/MyFooter";
 import NotFound from "./components/NotFound/NotFound";
 import JobsFinder from "./components/jobs/JobsFinder";
-import DinamicProfile from "./components/DinamicProfile/DinamicProfile";
 import Messaging from "./components/Messaging";
 
 
@@ -39,39 +39,37 @@ const App = () => {
   return (
 
     <BrowserRouter>
-        <header>
-          <MyNavbar
-            onScrollChange={handleScrollChange}
-            onUserProfileChange={handleUserChange}
-            onSearchChange={handleSearchChange}
-          />
-        </header>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <main >
-                <Profile />
-                <MyFooter />
-              </main>
-            }
-          />
-          <Route path="/home" element={
-            <Home userProfile={onUserChange} ></Home>
-          } />
-          <Route path="/jobs" element={
-            <Jobs userProfile={onUserChange}></Jobs>
-          } />
-        <Route path="/Messaging" element={
-          <Messaging userProfile={onUserChange}></Messaging>
+      <header>
+        <MyNavbar
+          onScrollChange={handleScrollChange}
+          onUserProfileChange={handleUserChange}
+          onSearchChange={handleSearchChange}
+        />
+      </header>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <main >
+              <Profile />
+              <MyFooter />
+            </main>
+          }
+        />
+        <Route path="/allsideprofiles" element={<AllSideProfiles />} />
+        <Route path="/profile/:profileId" element={<SingleProfile />} />
+        <Route path="/home" element={
+          <Home userProfile={onUserChange} ></Home>
         } />
-          <Route path="*" element={
-            <NotFound />
-          } />
-          <Route path="/jobs-finder" element={<JobsFinder searchQuery={searchQuery} />} />
-          <Route path="dinamicProfile/:SingleProfileId" element={<DinamicProfile />} />
-        </Routes>
-
+        <Route path="/jobs" element={
+          <Jobs userProfile={onUserChange}></Jobs>
+        } />
+        <Route path="*" element={
+          <NotFound />
+        } />
+        <Route path="/jobs-finder" element={<JobsFinder searchQuery={searchQuery} />} />
+        <Route path="/Messaging" element={<Messaging></Messaging>} />
+      </Routes>
     </BrowserRouter>
   );
 };

@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import { ListGroup, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import "./TendinaTu.css"
 
 function TendinaTu({ dati }) {
@@ -16,7 +17,7 @@ function TendinaTu({ dati }) {
                     </div>
                 </div>
                 <div>
-                    <Button className="w-100 py-0 border border-primary bg-light text-primary fw-semibold rounded rounded-5">Visualizza profilo</Button>
+                    <Button className="w-100 py-0 border border-primary bg-light text-primary fw-semibold rounded rounded-5"><Link to="/" className="text-decoration-none">Visualizza profilo</Link></Button>
                 </div>
             </ListGroup.Item>
             <ListGroup.Item className="custom-list-group-item">

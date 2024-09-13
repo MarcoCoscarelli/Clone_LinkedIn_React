@@ -123,10 +123,10 @@ function MyNavbar({ onScrollChange, onUserProfileChange, onSearchChange }) {
                                             <div>Lavoro</div>
                                         </Link>
 
-                                        <div className="navbar-icon-container text-center mx-3 navbar-icon" to="/Messaging">
+                                        <Link className="navbar-icon-container text-center mx-3 navbar-icon text-decoration-none" to="/Messaging">
                                             <ChatDotsFill size={20} />
                                             <div>Messaggistica</div>
-                                        </div>
+                                        </Link>
 
                                         <div className="navbar-icon-container text-center mx-3 navbar-icon">
                                             <BellFill size={20} />
@@ -159,7 +159,6 @@ function MyNavbar({ onScrollChange, onUserProfileChange, onSearchChange }) {
                                                 <span className="mt-1">Per le aziende</span>
                                             </Dropdown.Toggle>
                                             <Dropdown.Menu>
-                                                {/* Other menu items */}
                                             </Dropdown.Menu>
                                         </Dropdown>
 
@@ -259,10 +258,10 @@ function MyNavbar({ onScrollChange, onUserProfileChange, onSearchChange }) {
                                             <div>Lavoro</div>
                                         </Link>
 
-                                        <Link className="navbar-icon-container text-center mx-3 navbar-icon" to="/Messaging">
-                    <ChatDotsFill size={20} />
-                    <div>Messaggistica</div>
-                  </Link>
+                                        <Link className="navbar-icon-container text-center mx-3 navbar-icon text-decoration-none" to="/Messaging">
+                                            <ChatDotsFill size={20} />
+                                            <div>Messaggistica</div>
+                                        </Link>
 
                                         <div className="navbar-icon-container text-center mx-3 navbar-icon">
                                             <BellFill size={20} />

@@ -2,6 +2,7 @@ export const ADD_HOME_POST = "ADD_HOME_POST";
 export const FETCH_HOME_POSTS = "FETCH_HOME_POST";
 export const SET_PROFILE = "SET_PROFILE";
 export const DELETE_HOME_POST = "DELETE_HOME_POST";
+export const SET_SINGLE_PROFILE = "SET_SINGLE_PROFILE";
 
 //fetch per ottenere tutti i post
 export const fetchHomePosts = async () => {
@@ -87,5 +88,27 @@ export const deleteHomePost = (postId) => async (dispatch) => {
     }
   } catch (error) {
     console.error("Errore nella cancellazione del post", error);
+  }
+};
+//fetch per il singolo profilo
+export const fetchSingleProfile = (profileId) => async (dispatch) => {
+  try {
+    const response = await fetch(
+      `https://striveschool-api.herokuapp.com/api/profile/${profileId}`,
+      {
+        method: "GET",
+        headers: {
+          Authorization:  "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmRlYjA5YjRkMGRlZjAwMTVjZWYwZmYiLCJpYXQiOjE3MjU4NzAyNjYsImV4cCI6MTcyNzA3OTg2Nn0.BzqbDuJcgAVaJ4zqQUJZ_9qggQsyBP3riei09Byqd68",
+        },
+      }
+    );
+    if (response.ok) {
+      const profileData = await response.json();
+      dispatch({ type: SET_SINGLE_PROFILE, payload: profileData });
+    } else {
+      console.error("Errore nel recupero del profilo");
+    }
+  } catch (error) {
+    console.error("Errore:", error);
   }
 };
